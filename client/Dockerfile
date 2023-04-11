@@ -6,6 +6,6 @@ ENV HOME=/${WORKDIR}
 
 WORKDIR ${HOME}
 
-RUN apk update && npm install -g npm
+RUN apt update && npm install -g npm
 
 CMD ["npm", "run", "dev"]
