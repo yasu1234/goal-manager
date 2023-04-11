@@ -17,3 +17,14 @@ services:
       - "3000:3000"
     depends_on:
       - db
+  client:
+    build:
+      context: ./client
+      args:
+        WORKDIR: $WORKDIR
+    volumes:
+      - "./client:/$WORKDIR"
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
