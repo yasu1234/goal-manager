@@ -6,6 +6,11 @@ ENV HOME=/${WORKDIR}
 
 WORKDIR ${HOME}
 
-RUN apt update && npm install -g npm
+RUN apt update \
+    && yarn install
 
-CMD ["npm", "run", "dev"]
+COPY . ./
+COPY package.json /client/package.json
+COPY yarn.lock /client/yarn.lock
+
+CMD ["yarn", "dev", "--host"]

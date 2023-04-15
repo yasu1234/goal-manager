@@ -1,3 +1,5 @@
+volumes:
+  node_modules:
 services:
   db:
     image: postgres
@@ -22,10 +24,12 @@ services:
   client:
     build:
       context: ./client
+      dockerfile: Dockerfile
       args:
         WORKDIR: $WORKDIR
     volumes:
-      - "./client:/$WORKDIR"
+      - ./client:/$WORKDIR:cached
+      - node_modules:/$WORKDIR/node_modules
     ports:
       - "5173:5173"
     depends_on:
