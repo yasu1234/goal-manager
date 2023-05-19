@@ -4,7 +4,6 @@ export default {
 </script>
 
 <template>
- <div>
     <img src="../assets/image/home_image.jpg" alt="Logo" class= "homeLogo">
     <h1>心の中に留めるだけでいいのか？<br>目標を管理・共有しよう</h1>
     <div class="homeButtons">
@@ -12,7 +11,6 @@ export default {
         <button class="commonButton">ログイン</button>
         <button class="guestButton">ゲストログイン</button>
     </div>
- </div>
 </template>
 
 <style>
