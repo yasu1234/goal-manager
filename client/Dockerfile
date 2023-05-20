@@ -13,4 +13,9 @@ COPY . ./
 COPY package.json /client/package.json
 COPY yarn.lock /client/yarn.lock
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
 CMD ["yarn", "dev", "--host"]
