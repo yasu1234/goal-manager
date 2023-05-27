@@ -6,7 +6,7 @@ import axios from 'axios'
 </script>
 
 <template>
-  <LoginForm />
+  <router-view />
 </template>
 
 <style scoped>
