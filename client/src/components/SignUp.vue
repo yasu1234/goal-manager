@@ -1,10 +1,12 @@
 <script>
+import axios from 'axios'
 export default {
     data () {
         return {
             email: '',
             password: '',
             passwordConfirm: '',
+            name: '',
             isPasswordValidationShow: false,
 
             validation: {
@@ -13,8 +15,19 @@ export default {
         }
     },
     methods: {
-        async signUp() {
-            console.log(this.email, this.password, this.passwordConfirm)
+        async signUp () {
+            try {
+                const res = await axios.post(process.env.VUE_APP_API_BASE + '/auth', {
+                    email: this.email,
+                    password: this.password,
+                    password_confirmation: this.passwordConfirmation,
+                    name: this.name
+                })
+                console.log({ res })
+                return res
+            } catch (error) {
+                console.log({ error })
+            }
         },
     
         async checkValidate() {
@@ -49,6 +62,10 @@ export default {
             <div class="item">
                 <label class="itemLabel" for="passwordConfirm">パスワード(確認)</label>
                 <input id="passwordConfirm" type="password" v-model="passwordConfirm">
+            </div>
+            <div class="item">
+                <label class="itemLabel" for="name">名前</label>
+                <input id="name" v-model="name">
             </div>
             <div class="signUpTitle">
                 <button class="registerButton">登録</button>
