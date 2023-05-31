@@ -17,7 +17,7 @@ export default {
     methods: {
         async signUp () {
             try {
-                const res = await axios.post(process.env.VUE_APP_API_BASE + '/auth', {
+                const res = await axios.post(import.meta.env.VITE_APP_API_BASE + '/auth', {
                     email: this.email,
                     password: this.password,
                     password_confirmation: this.passwordConfirmation,
@@ -65,7 +65,7 @@ export default {
             </div>
             <div class="item">
                 <label class="itemLabel" for="name">名前</label>
-                <input id="name" v-model="name">
+                <input id="name"  type="text" v-model="name">
             </div>
             <div class="signUpTitle">
                 <button class="registerButton">登録</button>
@@ -110,7 +110,8 @@ export default {
 
  /* 入力欄にpadding追加 */
 .form input[type="email"],
-.form input[type="password"] {
+.form input[type="password"],
+.form input[type="text"] {
      padding: 10px;
      width: 100%;
  }
