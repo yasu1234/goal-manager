@@ -1,13 +1,18 @@
-<script>
-export default {
-}
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function showSignUp() {
+    router.push('/signUp');
+};
 </script>
 
 <template>
     <img src="../assets/image/home_image.jpg" alt="Logo" class= "homeLogo">
     <h1>心の中に留めるだけでいいのか？<br>目標を管理・共有しよう</h1>
     <div class="homeButtons">
-        <button class="commonButton">会員登録</button>
+        <button class="commonButton" @click="showSignUp">会員登録</button>
         <button class="commonButton">ログイン</button>
         <button class="guestButton">ゲストログイン</button>
     </div>
