@@ -1,12 +1,12 @@
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import Cookies from 'js-cookie'
+
 export default {
     data () {
         return {
             email: '',
             password: '',
-            passwordConfirm: '',
-            name: '',
             isPasswordValidationShow: false,
 
             validation: {
@@ -15,41 +15,32 @@ export default {
         }
     },
     methods: {
-        async signUp () {
+        async login() {
             try {
-                const res = await axios.post(import.meta.env.VITE_APP_API_BASE + '/auth', {
+                const response = await axios.post(import.meta.env.VITE_APP_API_BASE + '/auth/sign_in', {
                     email: this.email,
                     password: this.password,
-                    password_confirmation: this.passwordConfirmation,
-                    name: this.name
                 })
-
                 Cookies.set('accessToken', response.headers["access-token"])
                 Cookies.set('client', response.headers["client"])
                 Cookies.set('uid', response.headers["uid"])
-                
-                return res
+
+                console.log(Cookies.get('accessToken'))
+                return response
             } catch (error) {
                 console.log({ error })
             }
         },
     
         async checkValidate() {
-            if (this.password == this.passwordConfirm) {
-                this.isPasswordValidationShow = false
-                this.validation.passwordMatchResult = ''
-                await this.signUp()
-            } else {
-                this.isPasswordValidationShow = true
-                this.validation.passwordMatchResult = 'パスワードとパスワード(確認)が一致しません'
-            }
+            await this.login()
         }
     }
 }
 </script>
 
 <template>
-    <h1 class="signUpTitle">会員登録</h1>
+    <h1 class="signUpTitle">ログイン</h1>
     <div class="singUpInput">
         <form class="form" @submit.prevent="checkValidate">
             <div class="item">
@@ -63,16 +54,8 @@ export default {
             <div class="error-message" v-show="isPasswordValidationShow">
                 <p class="error-message-text">{{ validation.passwordMatchResult }}</p>
             </div>
-            <div class="item">
-                <label class="itemLabel" for="passwordConfirm">パスワード(確認)</label>
-                <input id="passwordConfirm" type="password" v-model="passwordConfirm">
-            </div>
-            <div class="item">
-                <label class="itemLabel" for="name">名前</label>
-                <input id="name"  type="text" v-model="name">
-            </div>
             <div class="signUpTitle">
-                <button class="registerButton">登録</button>
+                <button class="loginButton">ログイン</button>
             </div>
         </form>
     </div>
@@ -112,10 +95,8 @@ export default {
     font-size: 15px;
 }
 
- /* 入力欄にpadding追加 */
 .form input[type="email"],
-.form input[type="password"],
-.form input[type="text"] {
+.form input[type="password"] {
      padding: 10px;
      width: 100%;
  }
@@ -127,7 +108,7 @@ export default {
    width: 50%;
  }
  
-.registerButton{
+.loginButton{
     background: #ffa500;
     color: white;
     font-size:16px;
