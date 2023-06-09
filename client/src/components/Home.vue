@@ -5,6 +5,9 @@ const router = useRouter();
 
 function showSignUp() {
     router.push('/signUp');
+}
+function showLogin() {
+    router.push('/login');
 };
 </script>
 
@@ -13,7 +16,7 @@ function showSignUp() {
     <h1>心の中に留めるだけでいいのか？<br>目標を管理・共有しよう</h1>
     <div class="homeButtons">
         <button class="commonButton" @click="showSignUp">会員登録</button>
-        <button class="commonButton">ログイン</button>
+        <button class="commonButton" @click="showLogin">ログイン</button>
         <button class="guestButton">ゲストログイン</button>
     </div>
 </template>
