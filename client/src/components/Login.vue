@@ -1,5 +1,7 @@
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import Cookies from 'js-cookie'
+
 export default {
     data () {
         return {
@@ -15,12 +17,16 @@ export default {
     methods: {
         async login() {
             try {
-                const res = await axios.post(import.meta.env.VITE_APP_API_BASE + '/auth/sign_in', {
+                const response = await axios.post(import.meta.env.VITE_APP_API_BASE + '/auth/sign_in', {
                     email: this.email,
                     password: this.password,
                 })
-                console.log({ res })
-                return res
+                Cookies.set('accessToken', response.headers["access-token"])
+                Cookies.set('client', response.headers["client"])
+                Cookies.set('uid', response.headers["uid"])
+
+                console.log(Cookies.get('accessToken'))
+                return response
             } catch (error) {
                 console.log({ error })
             }

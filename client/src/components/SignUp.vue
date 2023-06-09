@@ -23,7 +23,11 @@ export default {
                     password_confirmation: this.passwordConfirmation,
                     name: this.name
                 })
-                console.log({ res })
+
+                Cookies.set('accessToken', response.headers["access-token"])
+                Cookies.set('client', response.headers["client"])
+                Cookies.set('uid', response.headers["uid"])
+                
                 return res
             } catch (error) {
                 console.log({ error })
