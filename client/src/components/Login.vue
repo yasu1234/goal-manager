@@ -25,7 +25,6 @@ export default {
                 Cookies.set('client', response.headers["client"])
                 Cookies.set('uid', response.headers["uid"])
 
-                console.log(Cookies.get('accessToken'))
                 return response
             } catch (error) {
                 console.log({ error })
