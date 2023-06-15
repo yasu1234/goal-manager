@@ -1,14 +1,35 @@
-<script setup>
+<script>
 import { useRouter } from 'vue-router';
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
-const router = useRouter();
+export default {
+    methods: {
+        async guestLogin() {
+            try {
+                const res = await axios.post(import.meta.env.VITE_APP_API_BASE + '/users/guest_sign_in')
 
-function showSignUp() {
-    router.push('/signUp');
+                Cookies.set('accessToken', res.headers["access-token"])
+                Cookies.set('client', res.headers["client"])
+                Cookies.set('uid', res.headers["uid"])
+                
+                return res
+            } catch (error) {
+                console.log({ error })
+            }
+        },
+
+        showSignUp() {
+            const router = useRouter();
+            router.push('/signUp');
+        },
+
+        showLogin() {
+            const router = useRouter();
+            router.push('/login');
+        }
+    }
 }
-function showLogin() {
-    router.push('/login');
-};
 </script>
 
 <template>
@@ -17,7 +38,7 @@ function showLogin() {
     <div class="homeButtons">
         <button class="commonButton" @click="showSignUp">会員登録</button>
         <button class="commonButton" @click="showLogin">ログイン</button>
-        <button class="guestButton">ゲストログイン</button>
+        <button class="guestButton" @click="guestLogin">ゲストログイン</button>
     </div>
 </template>
 
