@@ -1,5 +1,4 @@
 <script>
-import { useRouter } from 'vue-router';
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
@@ -20,13 +19,11 @@ export default {
         },
 
         showSignUp() {
-            const router = useRouter();
-            router.push('/signUp');
+            this.$router.push('/signUp');
         },
 
         showLogin() {
-            const router = useRouter();
-            router.push('/login');
+            this.$router.push('/login');
         }
     }
 }
