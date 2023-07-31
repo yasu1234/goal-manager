@@ -19,5 +19,7 @@
     "vite": "^4.2.0",
     "vue-cli-plugin-vue-next": "~0.1.4"
   },
-  "type": "module"
+  "type": "module",
+  "main": "src/main.js",
+  "module": "src/main.js"
 }
