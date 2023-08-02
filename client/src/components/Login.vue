@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import Cookies from 'js-cookie'
+import MainHeader from '/src/components/Header.vue'
 
 export default {
     data () {
@@ -14,6 +15,9 @@ export default {
             }
         }
     },
+    components: {
+        MainHeader
+    },
     methods: {
         async login() {
             try {
@@ -25,7 +29,7 @@ export default {
                 Cookies.set('client', response.headers["client"])
                 Cookies.set('uid', response.headers["uid"])
 
-                return response
+                this.$router.push('/goalManager');
             } catch (error) {
                 console.log({ error })
             }
@@ -39,6 +43,7 @@ export default {
 </script>
 
 <template>
+    <MainHeader/>
     <h1 class="signUpTitle">ログイン</h1>
     <div class="singUpInput">
         <form class="form" @submit.prevent="checkValidate">

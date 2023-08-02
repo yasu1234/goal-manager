@@ -12,7 +12,7 @@ export default {
                 Cookies.set('client', res.headers["client"])
                 Cookies.set('uid', res.headers["uid"])
                 
-                return res
+                this.$router.push('/goalManager');
             } catch (error) {
                 console.log({ error })
             }
@@ -31,7 +31,7 @@ export default {
 
 <template>
     <img src="../assets/image/home_image.jpg" alt="Logo" class= "homeLogo">
-    <h1>心の中に留めるだけでいいのか？<br>目標を管理・共有しよう</h1>
+    <h1 class="homeTitle">心の中に留めるだけでいいのか？<br>目標を管理・共有しよう</h1>
     <div class="homeButtons">
         <button class="commonButton" @click="showSignUp">会員登録</button>
         <button class="commonButton" @click="showLogin">ログイン</button>
@@ -45,6 +45,9 @@ export default {
     height:400px;
     object-fit: cover;
     display: block;
+}
+.homeTitle {      
+    text-align: center;
 }
 .homeButtons {
     width:50%;
