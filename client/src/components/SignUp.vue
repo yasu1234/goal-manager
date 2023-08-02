@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios'
+
 export default {
     data () {
         return {
@@ -28,7 +29,7 @@ export default {
                 Cookies.set('client', response.headers["client"])
                 Cookies.set('uid', response.headers["uid"])
                 
-                return res
+                this.$router.push('/goalManager');
             } catch (error) {
                 console.log({ error })
             }
