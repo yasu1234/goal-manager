@@ -8,7 +8,8 @@ export default {
     data() {
         return {
             items: [
-                { index: 0, title: '一覧', icon: mdiViewList, path: '/login' }
+                { index: 0, title: '一覧', icon: mdiViewList, path: '/login' },
+                { index: 0, title: '追加', icon: mdiViewList, path: '/goalAdd' }
             ],
             drawer: true,
             rail: false,
