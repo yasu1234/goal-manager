@@ -16,11 +16,16 @@
                 <DatePicker/>
             </div>
         </div>
+        <div class="relationImages">
+            <p class="inputTitle">関連画像</p>
+            <DropFile/>
+        </div>
     </v-app>
 </template>
 
 <script>
 import DatePicker from '../components/DatePicker.vue'
+import DropFile from '../components/DropFile.vue'
 
 export default {
     data() {
@@ -59,7 +64,8 @@ export default {
         };
     },
     components: {
-        DatePicker
+        DatePicker,
+        DropFile,
     }
 }
 </script>
@@ -93,5 +99,8 @@ export default {
   margin: 5px 0 0;
   padding: 0;
   font-size: 16px;
+}
+.relationImages {
+    padding: 20px;
 }
 </style>
