@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   end
 
   get '/current_user', to: 'user#current_user_json', defaults: { format: :json }
+
+  resources :category, only: [:index, :show]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
+
 end
