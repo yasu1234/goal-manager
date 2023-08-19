@@ -101,7 +101,6 @@
   <style>
   .main {
     align-items: center;
-    height: 100vh;
     justify-content: center;
     text-align: center;
   }

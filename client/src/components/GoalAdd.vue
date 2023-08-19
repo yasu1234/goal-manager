@@ -20,12 +20,17 @@
             <p class="inputTitle">関連画像</p>
             <DropFile/>
         </div>
+        <div class="relationImages">
+            <p class="inputTitle">カテゴリー</p>
+            <VueSelect name="hoge" :options="options" v-model="selected" :append-to-body="true"></VueSelect>
+        </div>
     </v-app>
 </template>
 
 <script>
 import DatePicker from '../components/DatePicker.vue'
 import DropFile from '../components/DropFile.vue'
+import "vue-select/dist/vue-select.css";
 
 export default {
     data() {
@@ -61,6 +66,9 @@ export default {
                 subfield: true,
                 preview: true
             },
+            selected: '',
+            options: [
+            ],
         };
     },
     components: {
