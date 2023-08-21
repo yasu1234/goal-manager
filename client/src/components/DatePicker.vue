@@ -12,7 +12,8 @@
 
 <script>
 import VueDatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css'
+import '@vuepic/vue-datepicker/dist/main.css';
+import { format } from 'date-fns';
 
 export default {
     data() {
@@ -26,10 +27,12 @@ export default {
     },
     methods: {
         updateDate() {
+            const formattedDate = format(this.date, 'yyyy/M/d');
+
             if (this.isStart) {
-                this.$parent.startDate = this.date;
+                this.$parent.startDate = formattedDate;
             } else {
-                this.$parent.endDate = this.date;
+                this.$parent.endDate = formattedDate;
             }
         }
     }
