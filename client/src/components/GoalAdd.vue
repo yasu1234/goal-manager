@@ -9,11 +9,11 @@
         <div class="time-list">
             <div class="item">
                 <p class="inputTitle">開始日</p>
-                <DatePicker/>
+                <DatePicker isStart=true />
             </div>
             <div class="item">
                 <p class="inputTitle">終了日</p>
-                <DatePicker/>
+                <DatePicker isStart=false />
             </div>
         </div>
         <div class="relationImages">
@@ -70,6 +70,8 @@ export default {
             selected: '',
             options: [
             ],
+            startDate: '',
+            endDate: '',
         };
     },
     components: {
