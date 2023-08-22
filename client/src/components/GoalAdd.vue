@@ -1,10 +1,10 @@
 <template>
     <v-app>
         <div class="editor">
-            <input type="text" id="Name" name="Name" placeholder="タイトル">
+            <input type="text" id="Name" name="Name" placeholder="タイトル" v-model="title">
         </div>
         <div class="editor">
-            <mavon-editor language="ja" :toolbars="markdownOption"/>
+            <mavon-editor language="ja" :toolbars="markdownOption" v-model="description" />
         </div>
         <div class="time-list">
             <div class="item">
@@ -67,6 +67,8 @@ export default {
                 subfield: true,
                 preview: true
             },
+            title: '',
+            description: '',
             selected: '',
             options: [
             ],
