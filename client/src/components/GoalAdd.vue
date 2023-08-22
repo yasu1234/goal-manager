@@ -22,7 +22,7 @@
         </div>
         <div class="relationImages">
             <p class="inputTitle">カテゴリー</p>
-            <VueSelect name="hoge" :options="options" v-model="selected" :append-to-body="true"></VueSelect>
+            <VueSelect name="hoge" :options="options" label="name" v-model="selected" :append-to-body="true"></VueSelect>
         </div>
     </v-app>
 </template>
@@ -86,7 +86,7 @@ export default {
             try {
                 const res = await axios.get(import.meta.env.VITE_APP_API_BASE + '/category')
                 for(let item of res.data.categories){
-                    this.options.push(item.name);
+                    this.options.push(item);
                 }
             } catch (error) {
                 console.log({ error })
