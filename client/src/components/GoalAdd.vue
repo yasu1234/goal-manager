@@ -114,6 +114,7 @@ export default {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
+                this.$router.replace('/goalComplete');
             } catch (error) {
                 console.log({ error })
             }

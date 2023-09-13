@@ -4,6 +4,7 @@ import SignUp from '/src/components/SignUp.vue';
 import Login from '/src/components/Login.vue';
 import GoalManager from '/src/components/GoalManager.vue';
 import GoalAdd from '/src/components/GoalAdd.vue';
+import RegisterComplete from '/src/components/RegisterComplete.vue';
 
 const routes = [
   {
@@ -27,7 +28,8 @@ const routes = [
     component: GoalManager,
     children: [
       { path: '/login', name:'Login', component: Login },
-      { path: '/goalAdd', name:'GoalAdd', component: GoalAdd }
+      { path: '/goalAdd', name:'GoalAdd', component: GoalAdd },
+      { path: '/goalComplete', name: 'RegisterComplete', component: RegisterComplete},
     ]
   },
 ];
