@@ -57,6 +57,7 @@
     methods: {
       onChange() {
         this.files = [...this.$refs.file.files];
+        this.$emit('change', [...this.$refs.file.files]);
       },
   
       generateThumbnail(file) {

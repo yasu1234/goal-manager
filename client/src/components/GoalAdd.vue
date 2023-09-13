@@ -18,11 +18,14 @@
         </div>
         <div class="relationImages">
             <p class="inputTitle">関連画像</p>
-            <DropFile/>
+            <DropFile @change="onFileChange"/>
         </div>
         <div class="relationImages">
             <p class="inputTitle">カテゴリー</p>
             <VueSelect name="hoge" :options="options" label="name" v-model="selected" :append-to-body="true"></VueSelect>
+        </div>
+        <div class="relationImages">
+            <button class="registerButton" @click="register">登録する</button>
         </div>
     </v-app>
 </template>
@@ -70,10 +73,10 @@ export default {
             title: '',
             description: '',
             selected: '',
-            options: [
-            ],
+            options: [],
             startDate: '',
             endDate: '',
+            files: []
         };
     },
     components: {
@@ -93,7 +96,33 @@ export default {
             } catch (error) {
                 console.log({ error })
             }
-        }
+        },
+        async register() {
+            try {
+                const formData = new FormData();
+                formData.append('title', this.title);
+                for (let i = 0; i < this.files.length; i++) {
+                    formData.append('images', this.files[i], this.files[i].name);
+                }
+
+                const data = {
+                    images: formData,
+                }
+
+                const res = await axios.post(import.meta.env.VITE_APP_API_BASE + '/goals', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+            } catch (error) {
+                console.log({ error })
+            }
+        },
+        onFileChange(event) {
+            for (let file of event) {
+                this.files.push(file);
+            }
+        },
     }
 }
 </script>
@@ -130,5 +159,11 @@ export default {
 }
 .relationImages {
     padding: 20px;
+}
+.registerButton{
+    background: #ffa500;
+    color: white;
+    font-size:16px;
+    font-weight:bold;
 }
 </style>
