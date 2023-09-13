@@ -26,6 +26,10 @@ module GoalManager
 
     config.i18n.default_locale = :ja
 
+    config.generators do |g|
+      g.assets          false 
+    end 
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
