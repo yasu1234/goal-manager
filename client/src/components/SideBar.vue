@@ -3,13 +3,15 @@ import axios from 'axios';
 import Cookies from 'js-cookie'
 import { mdiChevronLeft } from '@mdi/js'
 import { mdiViewList } from '@mdi/js'
+import { mdiCheckboxMarkedCirclePlusOutline } from '@mdi/js'
 
 export default {
     data() {
         return {
             items: [
                 { index: 0, title: '一覧', icon: mdiViewList, path: '/login' },
-                { index: 0, title: '追加', icon: mdiViewList, path: '/goalAdd' }
+                { index: 1, title: '目標追加', icon: mdiViewList, path: '/goalAdd' },
+                { index: 2, title: 'タスク追加', icon: mdiCheckboxMarkedCirclePlusOutline, path: '/taskAdd' },
             ],
             drawer: true,
             rail: false,
