@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :goals
 
+  get '/myGoals', to: 'goals#get', defaults: { format: :json }
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
