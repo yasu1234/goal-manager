@@ -2,7 +2,7 @@
     <v-app>
         <div class="relationImages">
             <p class="inputTitle">対象タスク</p>
-            <VueSelect name="taskAdd" :options="options" label="name" v-model="selectedTask" :append-to-body="true"></VueSelect>
+            <VueSelect name="taskAdd" :options="options" label="title" v-model="selectedGoal" :append-to-body="true"></VueSelect>
         </div>
         <div class="editor">
             <input type="text" id="Name" name="Name" placeholder="タイトル" v-model="title">
@@ -34,6 +34,8 @@
 import DatePicker from '../components/DatePicker.vue'
 import DropFile from '../components/DropFile.vue'
 import "vue-select/dist/vue-select.css";
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export default {
     data() {
@@ -71,7 +73,7 @@ export default {
             },
             title: '',
             description: '',
-            selectedTask: '',
+            selectedGoal: '',
             options: [],
             startDate: '',
             endDate: '',
@@ -83,9 +85,28 @@ export default {
         DropFile,
     },
     mounted() {
+        this.getGoals()
     },
     methods: {
-        
+        async getGoals() {
+            try {
+                const res = await axios.get(import.meta.env.VITE_APP_API_BASE + '/myGoals', {
+                    headers:{
+                        'Content-Type': 'application/json',
+                        'access-token' : Cookies.get('accessToken'),
+                        'client':Cookies.get('client'),
+                        'uid': Cookies.get('uid')
+                    }
+                })
+                for(let item of res.data.goal){
+                    this.options.push(item);
+                }
+            } catch (error) {
+                console.log({ error })
+            }
+        },
+        async register() {
+        },
         onFileChange(event) {
             for (let file of event) {
                 this.files.push(file);

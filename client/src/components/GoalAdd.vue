@@ -35,6 +35,7 @@ import DatePicker from '../components/DatePicker.vue'
 import DropFile from '../components/DropFile.vue'
 import "vue-select/dist/vue-select.css";
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export default {
     data() {
@@ -111,7 +112,10 @@ export default {
 
                 const res = await axios.post(import.meta.env.VITE_APP_API_BASE + '/goals', formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'multipart/form-data',
+                        'access-token' : Cookies.get('accessToken'),
+                        'client':Cookies.get('client'),
+                        'uid': Cookies.get('uid')
                     }
                 })
                 this.$router.replace('/goalComplete');
