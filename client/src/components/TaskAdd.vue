@@ -106,6 +106,33 @@ export default {
             }
         },
         async register() {
+            try {
+                const formData = new FormData();
+                formData.append('title', this.title);
+                for (let i = 0; i < this.files.length; i++) {
+                    formData.append('images', this.files[i], this.files[i].name);
+                }
+                formData.append('goal_id', this.selectedGoal.id);
+                formData.append('description', this.description);
+                formData.append('start_date', this.startDate);
+                formData.append('end_date', this.endDate);
+
+                const data = {
+                    images: formData,
+                }
+
+                const res = await axios.post(import.meta.env.VITE_APP_API_BASE + '/tasks', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'access-token' : Cookies.get('accessToken'),
+                        'client':Cookies.get('client'),
+                        'uid': Cookies.get('uid')
+                    }
+                })
+                this.$router.replace('/goalComplete');
+            } catch (error) {
+                console.log({ error })
+            }
         },
         onFileChange(event) {
             for (let file of event) {
