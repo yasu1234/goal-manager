@@ -6,6 +6,7 @@ import GoalManager from '/src/components/GoalManager.vue';
 import GoalAdd from '/src/components/GoalAdd.vue';
 import RegisterComplete from '/src/components/RegisterComplete.vue';
 import TaskAdd from '/src/components/TaskAdd.vue';
+import GoalList from '/src/components/GoalList.vue';
 
 const routes = [
   {
@@ -28,10 +29,10 @@ const routes = [
     name: 'GoalManager', 
     component: GoalManager,
     children: [
-      { path: '/login', name:'Login', component: Login },
       { path: '/goalAdd', name:'GoalAdd', component: GoalAdd },
       { path: '/goalComplete', name: 'RegisterComplete', component: RegisterComplete},
-      { path: '/taskAdd', name: 'TaskAdd', component: TaskAdd}
+      { path: '/taskAdd', name: 'TaskAdd', component: TaskAdd},
+      { path: '/goalList', name: 'GoalList', component: GoalList}
     ]
   },
 ];
