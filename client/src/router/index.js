@@ -5,6 +5,7 @@ import Login from '/src/components/Login.vue';
 import GoalManager from '/src/components/GoalManager.vue';
 import GoalAdd from '/src/components/GoalAdd.vue';
 import RegisterComplete from '/src/components/RegisterComplete.vue';
+import TaskAdd from '/src/components/TaskAdd.vue';
 
 const routes = [
   {
@@ -30,6 +31,7 @@ const routes = [
       { path: '/login', name:'Login', component: Login },
       { path: '/goalAdd', name:'GoalAdd', component: GoalAdd },
       { path: '/goalComplete', name: 'RegisterComplete', component: RegisterComplete},
+      { path: '/taskAdd', name: 'TaskAdd', component: TaskAdd}
     ]
   },
 ];

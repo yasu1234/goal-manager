@@ -1,5 +1,9 @@
 <template>
     <v-app>
+        <div class="relationImages">
+            <p class="inputTitle">対象タスク</p>
+            <VueSelect name="taskAdd" :options="options" label="title" v-model="selectedGoal" :append-to-body="true"></VueSelect>
+        </div>
         <div class="editor">
             <input type="text" id="Name" name="Name" placeholder="タイトル" v-model="title">
         </div>
@@ -19,10 +23,6 @@
         <div class="relationImages">
             <p class="inputTitle">関連画像</p>
             <DropFile @change="onFileChange"/>
-        </div>
-        <div class="relationImages">
-            <p class="inputTitle">カテゴリー</p>
-            <VueSelect name="hoge" :options="options" label="name" v-model="selected" :append-to-body="true"></VueSelect>
         </div>
         <div class="relationImages">
             <button class="registerButton" @click="register">登録する</button>
@@ -73,7 +73,7 @@ export default {
             },
             title: '',
             description: '',
-            selected: '',
+            selectedGoal: '',
             options: [],
             startDate: '',
             endDate: '',
@@ -85,13 +85,20 @@ export default {
         DropFile,
     },
     mounted() {
-        this.getCategoies()
+        this.getGoals()
     },
     methods: {
-        async getCategoies() {
+        async getGoals() {
             try {
-                const res = await axios.get(import.meta.env.VITE_APP_API_BASE + '/category')
-                for(let item of res.data.categories){
+                const res = await axios.get(import.meta.env.VITE_APP_API_BASE + '/myGoals', {
+                    headers:{
+                        'Content-Type': 'application/json',
+                        'access-token' : Cookies.get('accessToken'),
+                        'client':Cookies.get('client'),
+                        'uid': Cookies.get('uid')
+                    }
+                })
+                for(let item of res.data.goal){
                     this.options.push(item);
                 }
             } catch (error) {
@@ -105,12 +112,16 @@ export default {
                 for (let i = 0; i < this.files.length; i++) {
                     formData.append('images', this.files[i], this.files[i].name);
                 }
+                formData.append('goal_id', this.selectedGoal.id);
+                formData.append('description', this.description);
+                formData.append('start_date', this.startDate);
+                formData.append('end_date', this.endDate);
 
                 const data = {
                     images: formData,
                 }
 
-                const res = await axios.post(import.meta.env.VITE_APP_API_BASE + '/goals', formData, {
+                const res = await axios.post(import.meta.env.VITE_APP_API_BASE + '/tasks', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'access-token' : Cookies.get('accessToken'),

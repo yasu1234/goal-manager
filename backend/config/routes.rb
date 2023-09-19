@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :category, only: [:index, :show]
 
   resources :goals
+  get '/myGoals', to: 'goals#get', defaults: { format: :json }
+
+  resources :tasks
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
