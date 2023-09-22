@@ -9,11 +9,11 @@
         <div class="time-list">
             <div class="item">
                 <p class="inputTitle">開始日</p>
-                <DatePicker isStart=true />
+                <DatePicker isStart=true @startDateChange="startDateChange"/>
             </div>
             <div class="item">
                 <p class="inputTitle">終了日</p>
-                <DatePicker isStart=false />
+                <DatePicker isStart=false @endDateChange="endDateChange"/>
             </div>
         </div>
         <div class="relationImages">
@@ -102,6 +102,8 @@ export default {
             try {
                 const formData = new FormData();
                 formData.append('title', this.title);
+                formData.append('start_date', this.startDate);
+                formData.append('end_date', this.endDate);
                 for (let i = 0; i < this.files.length; i++) {
                     formData.append('images', this.files[i], this.files[i].name);
                 }
@@ -127,6 +129,12 @@ export default {
             for (let file of event) {
                 this.files.push(file);
             }
+        },
+        startDateChange(event) {
+            this.startDate = event;
+        },
+        endDateChange(event) {
+            this.endDate = event;
         },
     }
 }

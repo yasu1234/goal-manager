@@ -2,8 +2,11 @@ class GoalsController < ApplicationController
     # before_action :authenticate_user!
     def create
         @user = current_user
+        logger.debug("user: #{goal_params}")
         @goal = Goal.create(goal_params)
         @goal.create_user_id = @user.id
+        @goal.start_date = Date.parse(params[:start_date]) if params[:start_date].present?
+        @goal.end_date = Date.parse(params[:end_date]) if params[:end_date].present?
         @goal.save
         render json: { goal: @goal }, status: 200
     end

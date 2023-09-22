@@ -27,12 +27,12 @@ export default {
     },
     methods: {
         updateDate() {
-            const formattedDate = format(this.date, 'yyyy/M/d');
+            const formattedDate = format(this.date, 'yyyy/MM/dd');
 
-            if (this.isStart) {
-                this.$parent.startDate = formattedDate;
+            if (this.isStart == "true") {
+                this.$emit('startDateChange', formattedDate);
             } else {
-                this.$parent.endDate = formattedDate;
+                this.$emit('endDateChange', formattedDate);
             }
         }
     }
