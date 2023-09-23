@@ -9,7 +9,7 @@ export default {
     data() {
         return {
             items: [
-                { index: 0, title: '目標一覧', icon: mdiViewList, path: '/goalList' },
+                { index: 0, title: '目標一覧', icon: mdiViewList, path: '/goalSearch' },
                 { index: 1, title: '目標追加', icon: mdiViewList, path: '/goalAdd' },
                 { index: 2, title: 'タスク追加', icon: mdiCheckboxMarkedCirclePlusOutline, path: '/taskAdd' },
             ],
