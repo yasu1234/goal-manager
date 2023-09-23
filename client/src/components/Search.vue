@@ -1,38 +1,36 @@
 <template>
-    <v-app>
-        <div class="editor">
-            <input type="text" id="keyword" name="Nkeywordame" placeholder="キーワードで検索" v-model="keyword">
+    <div class="editor">
+        <input type="text" id="keyword" name="Nkeywordame" placeholder="キーワードで検索" v-model="keyword">
+    </div>
+    <div class="relationImages">
+        <p class="inputTitle">カテゴリー</p>
+        <VueSelect name="hoge" :options="options" label="name" v-model="selectedCategory" :append-to-body="true"></VueSelect>
+    </div>
+    <div class="time-list">
+        <div class="item">
+            <p class="inputTitle">開始日</p>
+            <DatePicker isStart=true  @startDateChange="startDateChange"/>
         </div>
-        <div class="relationImages">
-            <p class="inputTitle">カテゴリー</p>
-            <VueSelect name="hoge" :options="options" label="name" v-model="selectedCategory" :append-to-body="true"></VueSelect>
+        <div class="item">
+            <p class="inputTitle">終了日</p>
+            <DatePicker isStart=false  @endDateChange="endDateChange"/>
         </div>
-        <div class="time-list">
-            <div class="item">
-                <p class="inputTitle">開始日</p>
-                <DatePicker isStart=true  @startDateChange="startDateChange"/>
-            </div>
-            <div class="item">
-                <p class="inputTitle">終了日</p>
-                <DatePicker isStart=false  @endDateChange="endDateChange"/>
-            </div>
-        </div>
-        <div class="search-check">
-            <v-checkbox
+    </div>
+    <div class="search-check">
+        <v-checkbox
             v-model="isMyGoal"
             label="自分の目標のみ表示" 
             color="#0000ff" />
-        </div>
-        <div class="search-check">
-            <v-checkbox
+    </div>
+    <div class="search-check">
+        <v-checkbox
             v-model="isShoowCompleteGoal"
             label="完了した目標も表示" 
             color="#0000ff" />
-        </div>
-        <div class="relationImages">
-            <button class="registerButton" @click="search">検索</button>
-        </div>
-    </v-app>
+    </div>
+    <div class="relationImages">
+        <button class="registerButton" @click="search">検索</button>
+    </div>
 </template>
 
 <script>
@@ -79,8 +77,7 @@ export default {
                 isMyGoal: this.isMyGoal,
                 isShoowCompleteGoal: this.isShoowCompleteGoal,
                 startDate: this.startDate,
-                endDate: this.endDate,
-            });
+                endDate: this.endDate,});
         },
         startDateChange(event) {
             this.startDate = event;

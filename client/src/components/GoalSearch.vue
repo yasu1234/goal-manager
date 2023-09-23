@@ -1,12 +1,13 @@
 <template>
     <v-app>
         <Search @onSearch="search"/>
+        <GoalList :searchResult= searchResult />
     </v-app>
 </template>
 
 <script>
 import Search from '../components/Search.vue'
-import "vue-select/dist/vue-select.css";
+import GoalList from '../components/GoalList.vue'
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -15,7 +16,7 @@ export default {
         return {
             keyword: '',
             selected: '',
-            options: [],
+            searchResult: [],
             startDate: '',
             endDate: '',
             isMyGoal: false,
@@ -23,7 +24,8 @@ export default {
         };
     },
     components: {
-        Search
+        Search,
+        GoalList
     },
     mounted() {
     },
@@ -50,7 +52,10 @@ export default {
                         endDate: this.endDate,
                     }
                 })
-                console.log(res.data);
+
+                for(let item of res.data.goals){
+                    this.searchResult.push(item);
+                }
             } catch (error) {
                 console.log({ error })
             }
