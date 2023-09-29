@@ -6,23 +6,31 @@
                 <p>{{ item.startDate }}</p>~<p>{{ item.endDate }}</p>
             </div>
         </div>
+        <v-pagination
+        v-if="searchResult.length"
+        v-model="page"
+        class="my-4"
+        :length=totalPageCount
+        @update:modelValue="handlePageChange" />
     </v-app>
 </template>
 
 <script>
-import "vue-select/dist/vue-select.css";
-
 export default {
     data() {
         return {
+            page: 1,
         };
     },
     components: {
     },
-    props: ['searchResult'],
+    props: ['searchResult', 'totalPageCount'],
     mounted() {
     },
     methods: {
+        handlePageChange(newPageNumber) {
+            this.$emit('changePage', newPageNumber)
+        }
     }
 }
 </script>
@@ -33,17 +41,4 @@ export default {
    border: 1px solid #CCC;
    border-radius: 5px;
  }
-
- input[type=text] {
-  width: 100%;
-  padding: 12px 12px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-.relationImages {
-    padding: 20px;
-}
-
 </style>
