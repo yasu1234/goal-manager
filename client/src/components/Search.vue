@@ -20,7 +20,8 @@
         <v-checkbox
             v-model="isMyGoal"
             label="自分の目標のみ表示" 
-            color="#0000ff" />
+            color="#0000ff"
+            @change="changeIsMyGoal(isMyGoal)" />
     </div>
     <div class="search-check">
         <v-checkbox
@@ -77,13 +78,18 @@ export default {
                 isMyGoal: this.isMyGoal,
                 isShoowCompleteGoal: this.isShoowCompleteGoal,
                 startDate: this.startDate,
-                endDate: this.endDate,});
+                endDate: this.endDate,
+                isMyGoal: this.isMyGoal
+            });
         },
         startDateChange(event) {
             this.startDate = event;
         },
         endDateChange(event) {
             this.endDate = event;
+        },
+        changeIsMyGoal(item) {
+            this.isMyGoal = item;
         },
     }
 }

@@ -3,6 +3,7 @@ class GoalsController < ApplicationController
 
     def index
         @user = current_user
+        @totalCount = 0
 
         if params[:keyWord].present? 
             @goals = Goal.where("title LIKE ?", "%#{params[:keyWord]}%")
@@ -22,7 +23,11 @@ class GoalsController < ApplicationController
             @goals = @goals.where("end_date <= ?", params[:endDate])
         end
 
-        render json: { goals: @goals }, status: 200
+        @totalCount = @goals.count
+
+        @goals = @goals.limit(params[:perPageCount])
+
+        render json: { goals: @goals, totalCount: @totalCount }, status: 200
     end
 
     def create

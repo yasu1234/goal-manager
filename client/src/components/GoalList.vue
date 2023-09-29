@@ -1,9 +1,9 @@
 <template>
     <v-app>
         <div class="goalListCard" v-for="item of searchResult" :key="item.id">
-            <h4><b>{{ item.title }}</b></h4>
+            <h4 class="goalTitle"><b>{{ item.title }}</b></h4>
             <div class="container">
-                <p>{{ item.startDate }}</p>~<p>{{ item.endDate }}</p>
+                <p class="goalDate">{{ item.startDate }}~{{ item.endDate }}</p>
             </div>
         </div>
         <v-pagination
@@ -37,8 +37,14 @@ export default {
 
 <style>
 .goalListCard{
-   margin: 10px 12px 12px 12px;
-   border: 1px solid #CCC;
-   border-radius: 5px;
- }
+    margin: 10px 12px 12px 12px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+}
+.goalTitle{
+    margin: 10px 12px 12px 10px;
+}
+.goalDate{
+    margin: 10px 0px 10px 10px;
+}
 </style>
