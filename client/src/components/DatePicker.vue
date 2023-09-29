@@ -7,7 +7,7 @@
     auto-apply
     :month-change-on-scroll="false"
     :enable-time-picker="false"
-    @update:model-value="updateDate" />
+    @update:model-value="updateDate"/>
 </template>
 
 <script>
@@ -27,6 +27,15 @@ export default {
     },
     methods: {
         updateDate() {
+            if (this.date == null) {
+                if (this.isStart == "true") {
+                    this.$emit('startDateChange', '');
+                } else {
+                    this.$emit('endDateChange', '');
+                }
+                return;
+            }
+
             const formattedDate = format(this.date, 'yyyy/MM/dd');
 
             if (this.isStart == "true") {
